@@ -1,0 +1,5 @@
+package br.com.maisvariedades.repository;
+
+public class ProdutoRepository {
+
+}
