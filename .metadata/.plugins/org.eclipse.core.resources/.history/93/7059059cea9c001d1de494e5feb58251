@@ -1,0 +1,6 @@
+package br.com.maisvariedades.dto;
+
+
+public class ProdutoDTO {
+
+}

@@ -1,0 +1,37 @@
+package br.com.loja.service;
+
+import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Service;
+
+import br.com.loja.dto.ProdutoDTO;
+import br.com.loja.exception.LojaException;
+import br.com.loja.model.Categoria;
+import br.com.loja.model.Produto;
+import br.com.loja.repository.CategoriaRepository;
+import br.com.loja.repository.ProdutoRepository;
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
+@Service
+public class ProdutoService {
+	
+	private ProdutoRepository produtoRepository;
+	private CategoriaRepository categoriaRepository;
+	
+	@Transactional
+	public ProdutoDTO save(Produto produto) {
+		Categoria saveCategoria = categoriaRepository.findById(produto.getCategoria().getId())
+				.orElseThrow(() -> new LojaException("Categoria não encontrada"));
+		
+		produto.setCategoria(saveCategoria);
+		Produto saved = produtoRepository.save(produto);
+		return ProdutoDTO.of(saved);
+	}
+	
+	@Transactional
+	public void delete(Long id) {
+		produtoRepository.deleteById(id);
+	}
+
+}

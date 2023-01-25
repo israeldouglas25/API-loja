@@ -1,0 +1,30 @@
+package br.com.loja.dto;
+
+import java.math.BigDecimal;
+
+import br.com.maisvariedades.model.Produto;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class ProdutoDTO {
+	
+private Long id;
+	
+	private String nome;
+	private String descricao;
+	private BigDecimal valor;
+	private String categoria;
+	
+	public static ProdutoDTO of(Produto produto) {
+		ProdutoDTO produtoDTO = new ProdutoDTO();
+		produtoDTO.setId(produto.getId());
+		produtoDTO.setNome(produto.getNome());
+		produtoDTO.setDescricao(produto.getDescricao());
+		produtoDTO.setValor(produto.getValor());
+		produtoDTO.setCategoria(produto.getCategoria().getNome());
+		return produtoDTO;
+	}
+
+}
