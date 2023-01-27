@@ -30,18 +30,6 @@ public class ProdutoService {
 		Produto saved = produtoRepository.save(produto);
 		return ProdutoDTO.of(saved);
 	}
-
-	@Transactional
-	public ProdutoDTO update(Long id, Produto produto) {
-		findById(id);
-		save(produto);
-		return ProdutoDTO.of(produto);
-	}
-
-	@Transactional
-	public void delete(Long id) {
-		produtoRepository.deleteById(id);
-	}
 	
 	@Transactional
 	public List<ProdutoDTO> findAll() {
@@ -56,6 +44,18 @@ public class ProdutoService {
 		Produto produto = produtoRepository.findById(id)
 				.orElseThrow(() -> new EntidadeNaoEncontradaException("Produto não encontrado!"));
 		return ProdutoDTO.of(produto);
+	}
+	
+	@Transactional
+	public ProdutoDTO update(Long id, Produto produto) {
+		findById(id);
+		save(produto);
+		return ProdutoDTO.of(produto);
+	}
+
+	@Transactional
+	public void delete(Long id) {
+		produtoRepository.deleteById(id);
 	}
 
 }
