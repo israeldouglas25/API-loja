@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,7 +20,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Venda {
+public class Pedido {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,11 +29,19 @@ public class Venda {
 	
 	private LocalDateTime data;
 	
-	private BigDecimal total;
+	@Column(name = "valor_total")
+	private BigDecimal valorTotal = BigDecimal.ZERO;
 	
-	@OneToMany(mappedBy = "venda", cascade = CascadeType.ALL)
-	private List<Item> itens = new ArrayList<>();
+	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
+	private List<ItemPedido> itens = new ArrayList<>();
 	
 	private TipoPagamento pagamento;
+	
+	
+	public void adicionarItem(ItemPedido item) {
+		item.setPedido(this);
+		this.itens.add(item);
+		this.valorTotal = this.valorTotal.add(item.getValor());
+	}
 
 }

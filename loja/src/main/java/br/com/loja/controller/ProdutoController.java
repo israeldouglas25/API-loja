@@ -2,6 +2,8 @@ package br.com.loja.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,7 +30,7 @@ public class ProdutoController {
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<ProdutoDTO> insert(@RequestBody ProdutoDTO produtoDTO) {
+	public ResponseEntity<ProdutoDTO> insert(@Valid @RequestBody ProdutoDTO produtoDTO) {
 		return ResponseEntity.ok(produtoService.save(Produto.of(produtoDTO)));
 	}
 	

@@ -3,6 +3,7 @@ package br.com.loja.model;
 import java.math.BigDecimal;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,9 +30,9 @@ public class Produto {
 
 	private BigDecimal valor;
 
-	private int qtd;
+	private int qtdEstoque;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Categoria categoria;
 
 	public static Produto of(ProdutoDTO produtoDTO) {
@@ -40,7 +41,7 @@ public class Produto {
 		produto.setNome(produtoDTO.getNome());
 		produto.setDescricao(produtoDTO.getDescricao());
 		produto.setValor(produtoDTO.getValor());
-		produto.setQtd(produtoDTO.getQtd());
+		produto.setQtdEstoque(produtoDTO.getQtdEstoque());
 		produto.setCategoria(produtoDTO.getCategoria());
 		return produto;
 	}

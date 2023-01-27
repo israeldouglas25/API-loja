@@ -2,6 +2,8 @@ package br.com.loja.dto;
 
 import java.math.BigDecimal;
 
+import javax.validation.constraints.NotNull;
+
 import br.com.loja.model.Categoria;
 import br.com.loja.model.Produto;
 import lombok.Getter;
@@ -15,8 +17,12 @@ public class ProdutoDTO {
 
 	private String nome;
 	private String descricao;
+	
+	@NotNull(message = "Valor obrigatório!")
 	private BigDecimal valor;
-	private int qtd;
+	
+	private int qtdEstoque;
+	
 	private Categoria categoria;
 
 	public static ProdutoDTO of(Produto produto) {
@@ -25,7 +31,7 @@ public class ProdutoDTO {
 		produtoDTO.setNome(produto.getNome());
 		produtoDTO.setDescricao(produto.getDescricao());
 		produtoDTO.setValor(produto.getValor());
-		produtoDTO.setQtd(produto.getQtd());
+		produtoDTO.setQtdEstoque(produto.getQtdEstoque());
 		produtoDTO.setCategoria(produto.getCategoria());
 		return produtoDTO;
 	}
