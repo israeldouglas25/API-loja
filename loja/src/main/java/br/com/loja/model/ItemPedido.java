@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import br.com.loja.dto.ItemPedidoDTO;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -37,12 +38,15 @@ public class ItemPedido {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Pedido pedido;
 
-	public ItemPedido(int qtdProduto, Produto produto, Pedido pedido) {
-		super();
-		this.qtdProduto = qtdProduto;
-		this.produto = produto;
-		this.pedido = pedido;
-		this.precoUnitario = produto.getValor();
+	public static ItemPedido of(ItemPedidoDTO itemPedidoDTO) {
+		ItemPedido itemPedido = new ItemPedido();
+		itemPedido.setId(itemPedidoDTO.getId());
+		itemPedido.setQtdProduto(itemPedidoDTO.getQtdProduto());
+		itemPedido.setPrecoUnitario(itemPedidoDTO.getPrecoUnitario());
+		itemPedido.setProduto(itemPedidoDTO.getProduto());
+		itemPedido.setPedido(itemPedidoDTO.getPedido());
+
+		return itemPedido;
 	}
 
 	public BigDecimal getValor() {

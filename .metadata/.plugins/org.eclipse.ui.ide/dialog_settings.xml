@@ -37,6 +37,8 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\Users\israe\OneDrive\Área de Trabalho\SUPERA - Desafio 5\PS-Java-React"/>
+			<item value="C:\Users\israe\OneDrive\Área de Trabalho\Spring\Cadastro-Pessoas"/>
 			<item value="C:\Users\israe\OneDrive\Área de Trabalho\Spring\Logistica-api"/>
 		</list>
 	</section>

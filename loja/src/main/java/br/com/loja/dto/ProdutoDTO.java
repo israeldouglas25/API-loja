@@ -33,6 +33,7 @@ public class ProdutoDTO {
 		produtoDTO.setValor(produto.getValor());
 		produtoDTO.setQtdEstoque(produto.getQtdEstoque());
 		produtoDTO.setCategoria(produto.getCategoria());
+		
 		return produtoDTO;
 	}
 

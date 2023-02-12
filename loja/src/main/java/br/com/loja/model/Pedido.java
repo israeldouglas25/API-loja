@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import br.com.loja.dto.PedidoDTO;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -37,6 +38,15 @@ public class Pedido {
 	
 	private TipoPagamento pagamento;
 	
+	public static Pedido of(PedidoDTO pedidoDTO) {
+		Pedido pedido = new Pedido();
+		pedido.setData(pedidoDTO.getData());
+		pedido.setItens(pedidoDTO.getItens());
+		pedido.setValorTotal(pedidoDTO.getValorTotal());
+		pedido.setPagamento(pedidoDTO.getPagamento());
+		
+		return pedido;
+	}
 	
 	public void adicionarItem(ItemPedido item) {
 		item.setPedido(this);
